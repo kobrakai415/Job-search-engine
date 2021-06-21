@@ -1,0 +1,27 @@
+
+#search-bar {
+  border-radius: 500px;
+  height: 40px;
+  max-width: 80;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: 6px 48px;
+}
+
+#search-bar-parent {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.search-bar-glass {
+  position: absolute;
+  left: 17px;
+  top: 8px;
+  color: black;
+}
+
+.job-container {
+  border: 1px solid grey ;
+  height: 300px;
+  padding: 20px
+}
