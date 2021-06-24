@@ -2,20 +2,18 @@ import React, { useState } from 'react';
 import { Col } from "react-bootstrap"
 import dateDiff from '../helpers/datediff';
 import { withRouter } from 'react-router';
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
 import { connect } from "react-redux"
-import { addToFavourites, removeFromFavourites } from "../actions"
+import { removeFromFavourites } from "../actions"
 
 const mapStateToProps = (state) => state
 
 const mapDispatchToProps = (dispatch) => ({
-    favourite: (job) => {dispatch(addToFavourites(job))},
+
     unFavourite: (job) => dispatch(removeFromFavourites(job))
 })
 
-const JobContainer = ({ job, history, favourite, unFavourite }) => {
-    
-    const [liked, toggleLike] = useState(false)
+const FavouriteJobContainer = ({ job, history, unFavourite }) => {
+
 
     const jobHandler = (id) => {
         history.push(`/company/${id}`)
@@ -31,8 +29,8 @@ const JobContainer = ({ job, history, favourite, unFavourite }) => {
                 </hr>
                 <p>Posted: {dateDiff(job.publication_date)}</p>
                 <p>Job type: {job.job_type}</p>
-                {liked && <AiFillHeart onClick={() => { unFavourite(job); toggleLike(false) }} style={{ fontSize: "40px" }} />}
-                {!liked && <AiOutlineHeart onClick={() => { favourite(job); toggleLike(true) }} style={{ fontSize: "40px" }} />}
+                <button type="button" className="btn btn-danger" onClick={() => { unFavourite(job) }}> Remove </button>
+
             </div>
 
 
@@ -40,4 +38,4 @@ const JobContainer = ({ job, history, favourite, unFavourite }) => {
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(JobContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FavouriteJobContainer));
